@@ -229,11 +229,11 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               //custom icon
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.0),
-                child: _calendarCarousel,
-              ), // This trailing comma makes auto-formatting nicer for build methods.
-              //custom icon without header
+//              Container(
+//                margin: EdgeInsets.symmetric(horizontal: 16.0),
+//                child: _calendarCarousel,
+//              ), // This trailing comma makes auto-formatting nicer for build methods.
+//              //custom icon without header
               Container(
                 margin: EdgeInsets.only(
                   top: 30.0,
@@ -256,9 +256,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           _currentDate2 =
-                              _currentDate2.subtract(Duration(days: 30));
-                          _currentMonth =
-                              DateFormat.yMMM().format(_currentDate2);
+                              _currentDate2.subtract(Duration(days: 31));
+                          if (_currentMonth == 'Jan 2019') {
+                            _currentDate2 =
+                                _currentDate2.add(Duration(days: 365));
+                            _currentMonth =
+                                DateFormat.yMMM().format(_currentDate2);
+                          } else {
+                            _currentMonth =
+                                DateFormat.yMMM().format(_currentDate2);
+                          }
+
+                          print(_currentDate2);
+                          print(_currentMonth);
                         });
                       },
                     ),
@@ -266,9 +276,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('NEXT'),
                       onPressed: () {
                         setState(() {
-                          _currentDate2 = _currentDate2.add(Duration(days: 30));
-                          _currentMonth =
-                              DateFormat.yMMM().format(_currentDate2);
+                          _currentDate2 = _currentDate2.add(Duration(days: 31));
+                          if (_currentMonth == 'Dec 2019') {
+                            _currentDate2 =
+                                _currentDate2.subtract(Duration(days: 360));
+                            _currentMonth =
+                                DateFormat.yMMM().format(_currentDate2);
+                          } else {
+                            _currentMonth =
+                                DateFormat.yMMM().format(_currentDate2);
+                          }
+
+                          print(_currentDate2);
+                          print(_currentMonth);
                         });
                       },
                     )
