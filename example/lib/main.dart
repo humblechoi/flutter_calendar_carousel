@@ -255,8 +255,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('PREV'),
                       onPressed: () {
                         setState(() {
-                          _currentDate2 =
-                              _currentDate2.subtract(Duration(days: 31));
+                          if (_currentMonth == 'Jan 2019' ||
+                              _currentMonth == 'Mar 2019' ||
+                              _currentMonth == 'May 2019' ||
+                              _currentMonth == 'Jul 2019' ||
+                              _currentMonth == 'Aug 2019' ||
+                              _currentMonth == 'Oct 2019' ||
+                              _currentMonth == 'Dec 2019') {
+                            _currentDate2 =
+                                _currentDate2.subtract(Duration(days: 31));
+                          } else if (_currentMonth == 'Feb 2019') {
+                            //TODO 윤년 계산도 해주장...여기 부분이 조금 이상함!! 2월달일때 제어해주기~~
+                            _currentDate2 =
+                                _currentDate2.subtract(Duration(days: 30));
+                          } else {
+                            _currentDate2 =
+                                _currentDate2.subtract(Duration(days: 30));
+                          }
+
                           if (_currentMonth == 'Jan 2019') {
                             _currentDate2 =
                                 _currentDate2.add(Duration(days: 365));
@@ -274,12 +290,30 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FlatButton(
                       child: Text('NEXT'),
+                      //TODO 여기에 달마다 add해주는게 달라져야한당
                       onPressed: () {
                         setState(() {
-                          _currentDate2 = _currentDate2.add(Duration(days: 31));
+                          if (_currentMonth == 'Jan 2019' ||
+                              _currentMonth == 'Mar 2019' ||
+                              _currentMonth == 'May 2019' ||
+                              _currentMonth == 'Jul 2019' ||
+                              _currentMonth == 'Aug 2019' ||
+                              _currentMonth == 'Oct 2019' ||
+                              _currentMonth == 'Dec 2019') {
+                            _currentDate2 =
+                                _currentDate2.add(Duration(days: 31));
+                          } else if (_currentMonth == 'Feb 2019') {
+                            //TODO 윤년 계산도 해주장...
+                            _currentDate2 =
+                                _currentDate2.add(Duration(days: 28));
+                          } else {
+                            _currentDate2 =
+                                _currentDate2.add(Duration(days: 30));
+                          }
+
                           if (_currentMonth == 'Dec 2019') {
                             _currentDate2 =
-                                _currentDate2.subtract(Duration(days: 360));
+                                _currentDate2.subtract(Duration(days: 365));
                             _currentMonth =
                                 DateFormat.yMMM().format(_currentDate2);
                           } else {
